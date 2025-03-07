@@ -9,7 +9,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
 	"sync/atomic"
 
@@ -260,13 +259,14 @@ func loadValidatorsFromFile(spec *common.Spec, validatorsConfigPath string) ([]p
 
 		// Validator balance
 		if len(lineParts) > 2 {
-			balance, err := strconv.ParseUint(string(lineParts[2]), 10, 64)
-			if err != nil {
-				return nil, err
-			}
-			validatorEntry.Balance = common.Gwei(balance)
+			// balance, err := strconv.ParseUint(string(lineParts[2]), 10, 64)
+			// if err != nil {
+			// 	return nil, err
+			// }
+			// WVM: 5k balance
+			validatorEntry.Balance = common.Gwei(5000000000000)
 		} else {
-			validatorEntry.Balance = spec.MAX_EFFECTIVE_BALANCE
+			validatorEntry.Balance = common.Gwei(5000000000000)
 		}
 
 		validators = append(validators, validatorEntry)
