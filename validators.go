@@ -127,7 +127,8 @@ func generateValidatorKeysByMnemonic(spec *common.Spec, mnemonicsConfigPath stri
 				}
 
 				// Max effective balance by default for activation
-				data.Balance = spec.MAX_EFFECTIVE_BALANCE
+				// WVM: set to 5k
+				data.Balance = common.Gwei(5000000000000)
 				validators[valIndex] = data
 				count := atomic.AddInt32(&prog, 1)
 				if count%100 == 0 {
